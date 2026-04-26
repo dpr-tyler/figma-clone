@@ -1,29 +1,29 @@
-import type { RectangleLayer } from "~/types";
+import type { EllipseLayer } from "~/types";
 import { colorToCss } from "~/utils";
 
-export default function Rectangle({
+export default function Ellipse({
   id,
   layer,
 }: {
   id: string;
-  layer: RectangleLayer;
+  layer: EllipseLayer;
 }) {
-  const { x, y, width, height, fill, stroke, opacity, cornerRadius } = layer;
+  const { x, y, width, height, fill, stroke, opacity } = layer;
 
   return (
     <g>
-      <rect
+      <ellipse
         style={{
           transform: `translate(${x}px, ${y}px)`,
         }}
-        width={width}
-        height={height}
         fill={fill ? colorToCss(fill) : "#CCC"}
-        strokeWidth={1}
         stroke={stroke ? colorToCss(stroke) : "#CCC"}
+        cx={width / 2}
+        cy={height / 2}
+        rx={width / 2}
+        ry={height / 2}
+        strokeWidth="1"
         opacity={`${opacity ?? 100}%`}
-        rx={cornerRadius ?? 0}
-        ry={cornerRadius ?? 0}
       />
     </g>
   );
